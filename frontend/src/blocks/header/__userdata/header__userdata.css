@@ -1,0 +1,5 @@
+.header__userdata {
+  display: flex;
+  justify-content: space-between;
+  cursor: default;
+}

@@ -1,0 +1,22 @@
+.form__title_type_infotooltip {
+  margin: 0 auto;
+  padding: 50px 0 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  gap: 40px;
+  font-weight: 900;
+  font-size: 20px;
+  line-height: 24px;
+}
+
+@media (min-width: 1024px) {
+  .form__title_type_infotooltip {
+    padding: 60px 36px 60px;
+    gap: 32px;
+    font-weight: 900;
+    font-size: 24px;
+    line-height: 29px;
+  }
+}

@@ -1,0 +1,7 @@
+.header__authorization_type_main {
+  margin: 0;
+}
+
+.header__authorization_type_main:hover {
+  opacity: 0.6;
+}
