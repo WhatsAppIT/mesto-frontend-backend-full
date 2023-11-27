@@ -1,47 +1,47 @@
-import React from "react";
-import { Link, Routes, Route } from "react-router-dom";
-import logo from "../images/logo.svg";
+import React from 'react';
+import { Link, Routes, Route } from 'react-router-dom';
+import logo from '../images/logo.svg';
 
 function Header(props) {
     const { email, handleLogOut } = props;
 
     return (
-        <header className="header">
-            <img className="header__logo" src={logo} alt="логотип" />
-            <div className="header__authorization">
+        <header className='header'>
+            <img className='header__logo' src={logo} alt='логотип' />
+            <div className='header__authorization'>
                 <Routes>
                     <Route
-                        path="/sign-in"
+                        path='/signin'
                         element={
                             <Link
-                                to="/sign-up"
-                                className="header__authorization header__authorization_type_signin"
+                                to='/signup'
+                                className='header__authorization header__authorization_type_signin'
                             >
                                 Регистрация
                             </Link>
                         }
                     />
                     <Route
-                        path="/sign-up"
+                        path='/signup'
                         element={
                             <Link
-                                to="/sign-in"
-                                className="header__authorization header__authorization_type_signup"
+                                to='/signin'
+                                className='header__authorization header__authorization_type_signup'
                             >
                                 Войти
                             </Link>
                         }
                     />
                     <Route
-                        path="/"
+                        path='/'
                         element={
-                            <div className="header__userdata">
-                                <p className="header__userdata_email">
+                            <div className='header__userdata'>
+                                <p className='header__userdata_email'>
                                     {email}
                                 </p>
                                 <Link
-                                    to="/sign-in"
-                                    className="header__authorization header__authorization_type_main"
+                                    to='/signin'
+                                    className='header__authorization header__authorization_type_main'
                                     onClick={handleLogOut}
                                 >
                                     Выйти

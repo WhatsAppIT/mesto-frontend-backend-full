@@ -1,19 +1,19 @@
-import React from "react";
-import { Routes, Route, useNavigate } from "react-router-dom";
-import Header from "./Header.jsx";
-import Main from "./Main.jsx";
-import PopupWithForm from "./PopupWithForm.jsx";
-import ImagePopup from "./ImagePopup.jsx";
-import CurrentUserContext from "../contexts/CurrentUserContext.js";
-import EditProfilePopup from "./EditProfilePopup.jsx";
-import EditAvatarPopup from "./EditAvatarPopup.jsx";
-import ProtectedRoute from "./ProtectedRoute.jsx";
-import InfoTooltip from "./InfoTooltip.jsx";
-import Login from "./Login.jsx";
-import Register from "./Register.jsx";
-import { api } from "../utils/api.js";
-import { auth } from "../utils/auth.js";
-import AddPlacePopup from "./AddPlacePopup.jsx";
+import React from 'react';
+import { Routes, Route, useNavigate } from 'react-router-dom';
+import Header from './Header.jsx';
+import Main from './Main.jsx';
+import PopupWithForm from './PopupWithForm.jsx';
+import ImagePopup from './ImagePopup.jsx';
+import CurrentUserContext from '../contexts/CurrentUserContext.js';
+import EditProfilePopup from './EditProfilePopup.jsx';
+import EditAvatarPopup from './EditAvatarPopup.jsx';
+import ProtectedRoute from './ProtectedRoute.jsx';
+import InfoTooltip from './InfoTooltip.jsx';
+import Login from './Login.jsx';
+import Register from './Register.jsx';
+import { api } from '../utils/api.js';
+import { auth } from '../utils/auth.js';
+import AddPlacePopup from './AddPlacePopup.jsx';
 
 function App() {
     const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] =
@@ -27,11 +27,11 @@ function App() {
     const [currentUser, setCurrentUser] = React.useState({});
     const [isLoading, setIsLoading] = React.useState(false);
     const [loggedIn, setLoggedIn] = React.useState(false);
-    const [userEmail, setUserEmail] = React.useState("");
+    const [userEmail, setUserEmail] = React.useState('');
     const [infoTooltipPopupOpen, setInfoTooltipPopupOpen] =
         React.useState(false);
     const [isRegistrate, setIsRegistrate] = React.useState(false);
-    const buttonSubmitText = isLoading ? "Сохранение..." : "Сохранить";
+    const buttonSubmitText = isLoading ? 'Сохранение...' : 'Сохранить';
 
     const navigate = useNavigate();
 
@@ -40,9 +40,9 @@ function App() {
             .then((res) => {
                 setIsRegistrate(false);
                 setUserEmail(username);
-                localStorage.setItem("jwt", res.token);
+                localStorage.setItem('jwt', res.token);
                 setLoggedIn(true);
-                navigate("/", { replace: true });
+                navigate('/', { replace: true });
             })
             .catch((err) => {
                 console.log(err);
@@ -57,7 +57,7 @@ function App() {
             .then(() => {
                 setIsRegistrate(true);
                 setInfoTooltipPopupOpen(true);
-                navigate("/sign-in", { replace: true });
+                navigate('/signin', { replace: true });
             })
             .catch((err) => {
                 console.log(err);
@@ -67,14 +67,14 @@ function App() {
     }
 
     function checkToken() {
-        if (localStorage.getItem("jwt")) {
-            const token = localStorage.getItem("jwt");
+        if (localStorage.getItem('jwt')) {
+            const token = localStorage.getItem('jwt');
             auth.getInformation(token)
                 .then((res) => {
                     if (res && res.data) {
                         setLoggedIn(true);
                         setUserEmail(res.data.email);
-                        navigate("/", { replace: true });
+                        navigate('/', { replace: true });
                     }
                 })
                 .catch(console.error);
@@ -89,8 +89,8 @@ function App() {
 
     function handleLogOut() {
         setLoggedIn(false);
-        localStorage.removeItem("jwt");
-        navigate("/sign-in");
+        localStorage.removeItem('jwt');
+        navigate('/signin');
     }
 
     React.useEffect(() => {
@@ -185,7 +185,7 @@ function App() {
 
     return (
         <CurrentUserContext.Provider value={currentUser}>
-            <div className="page">
+            <div className='page'>
                 <Header
                     loggedIn={loggedIn}
                     handleLogOut={handleLogOut}
@@ -193,15 +193,15 @@ function App() {
                 />
                 <Routes>
                     <Route
-                        path="/sign-in"
+                        path='/signin'
                         element={<Login onLogin={handleLogin} />}
                     />
                     <Route
-                        path="/sign-up"
+                        path='/signup'
                         element={<Register onRegister={handleRegister} />}
                     />
                     <Route
-                        path="/"
+                        path='/'
                         element={
                             <ProtectedRoute
                                 component={Main}
@@ -217,7 +217,7 @@ function App() {
                         }
                     />
                     <Route
-                        path="*"
+                        path='*'
                         element={
                             <ProtectedRoute
                                 component={Main}
@@ -252,9 +252,9 @@ function App() {
                     buttonText={buttonSubmitText}
                 />
                 <PopupWithForm
-                    title="Вы уверены?"
-                    name="delete-card"
-                    buttonText="Да"
+                    title='Вы уверены?'
+                    name='delete-card'
+                    buttonText='Да'
                     onClose={closeAllPopups}
                 />
                 <ImagePopup
@@ -267,7 +267,7 @@ function App() {
                     isOpen={infoTooltipPopupOpen}
                     onClose={closeAllPopups}
                     isRegistrate={isRegistrate}
-                    name="infotooltip"
+                    name='infotooltip'
                 />
             </div>
         </CurrentUserContext.Provider>
