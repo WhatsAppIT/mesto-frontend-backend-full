@@ -103,7 +103,7 @@ class Api {
 }
 
 const api = new Api({
-    url: 'http://api.mesto.krivolapov.nomoredomainsmonster.ru',
+    url: 'http://api.krivolapov.nomoredomainsmonster.ru',
     headers: {
         //authorization: 'dc5ffe71-d4a2-4ae4-8d8f-113b04708a8c',
         'Content-type': 'application/json',

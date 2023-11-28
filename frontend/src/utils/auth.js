@@ -46,7 +46,7 @@ class Auth {
 }
 
 const auth = new Auth({
-    url: 'http://api.mesto.krivolapov.nomoredomainsmonster.ru',
+    url: 'http://api.krivolapov.nomoredomainsmonster.ru',
     headers: {
         Accept: 'application/json',
         'Content-type': 'application/json',
