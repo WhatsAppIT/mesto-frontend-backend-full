@@ -13,7 +13,7 @@ const routerCards = require("./routes/cards");
 const NotFoundError = require("./errors/NotFoundError");
 const { linkRegex } = require("./utils/constants");
 
-const { PORT = 3001, MONGO_URL = "mongodb://127.0.0.1:27017/mestodb" } =
+const { PORT = 3002, MONGO_URL = "mongodb://127.0.0.1:27017/mestodb" } =
   process.env;
 
 const app = express();
