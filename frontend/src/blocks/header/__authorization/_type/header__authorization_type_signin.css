@@ -1,0 +1,8 @@
+.header__authorization_type_signin {
+  margin: 0;
+  padding: 0;
+}
+
+.header__authorization_type_signin:hover {
+  opacity: 0.6;
+}

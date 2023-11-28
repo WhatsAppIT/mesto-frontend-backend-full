@@ -1,0 +1,19 @@
+.header__authorization {
+  margin: 34px 30px 33px 0;
+  color: #ffffff;
+  text-decoration: none;
+  width: 400;
+  size: 14px;
+  line-height: 17px;
+  cursor: pointer;
+}
+
+@media (min-width: 1024px) {
+  .header__authorization {
+    margin: 51px 0 46px 27px;
+    color: #ffffff;
+    text-decoration: none;
+    size: 18px;
+    line-height: 22px;
+  }
+}
