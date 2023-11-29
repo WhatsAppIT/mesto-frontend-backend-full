@@ -17,8 +17,25 @@ const { linkRegex } = require("./utils/constants");
 const { PORT = 3002, MONGO_URL = "mongodb://127.0.0.1:27017/mestodb" } =
   process.env;
 
+const allowedCors = [
+  "https://krivolapov.nomoredomainsmonster.ru",
+  "http://krivolapov.nomoredomainsmonster.ru",
+  "localhost:3002",
+];
+
 const app = express();
-app.use(
+
+app.use(function (req, res, next) {
+  const { origin } = req.headers;
+
+  if (allowedCors.includes(origin)) {
+    res.header("Access-Control-Allow-Origin", origin);
+  }
+
+  next();
+});
+
+/* app.use(
   cors({
     origin: [
       "http://localhost:3002",
@@ -28,7 +45,7 @@ app.use(
     credentials: true,
     maxAge: 30,
   })
-);
+); */
 //app.use(cors());
 
 app.use(bodyParser.json());
