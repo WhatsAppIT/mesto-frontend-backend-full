@@ -23,6 +23,7 @@ app.use(
     origin: [
       "http://localhost:3002",
       "https://krivolapov.nomoredomainsmonster.ru",
+      "https://api.krivolapov.nomoredomainsmonster.ru",
     ],
     credentials: true,
     maxAge: 30,
