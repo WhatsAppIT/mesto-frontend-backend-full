@@ -31,7 +31,7 @@ class Auth {
             metod: 'GET',
             headers: {
                 ...this._headers,
-                Authorization: `Bearer ${token}`,
+                'Authorization': `Bearer ${token}`,
             },
         }).then(this._handleResponseAuth);
     }
@@ -48,7 +48,7 @@ class Auth {
 const auth = new Auth({
     url: 'https://api.krivolapov.nomoredomainsmonster.ru',
     headers: {
-        Accept: 'application/json',
+        //Accept: 'application/json',
         'Content-type': 'application/json',
     },
 });
