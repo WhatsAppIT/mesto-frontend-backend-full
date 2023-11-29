@@ -40,7 +40,7 @@ const app = express();
   next();
 }); */
 
-app.use(
+/* app.use(
   cors({
     origin: [
       "http://localhost:3002",
@@ -58,8 +58,8 @@ app.use(
     credentials: "include",
     maxAge: 30,
   })
-);
-//app.use(cors());
+); */
+app.use(cors());
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
