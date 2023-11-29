@@ -105,11 +105,9 @@ class Api {
 const api = new Api({
     url: 'https://api.krivolapov.nomoredomainsmonster.ru',
     headers: {
-        'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
+        Authorization: `Bearer ${localStorage.getItem('jwt')}`,
         'Content-type': 'application/json',
     },
-        mode: 'cors',
-        credentials: 'include',
 });
 
 export { api };
