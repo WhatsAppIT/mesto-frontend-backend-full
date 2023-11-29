@@ -17,7 +17,7 @@ const { linkRegex } = require("./utils/constants");
 const { PORT = 3002, MONGO_URL = "mongodb://127.0.0.1:27017/mestodb" } =
   process.env;
 
-const allowedCors = [
+/* const allowedCors = [
   "https://krivolapov.nomoredomainsmonster.ru",
   "http://krivolapov.nomoredomainsmonster.ru",
   "https://api.krivolapov.nomoredomainsmonster.ru",
@@ -26,11 +26,11 @@ const allowedCors = [
   "https://localhost:3002",
   "http://localhost:3000",
   "https://localhost:3000",
-];
+]; */
 
 const app = express();
 
-app.use(function (req, res, next) {
+/* app.use(function (req, res, next) {
   const { origin } = req.headers;
 
   if (allowedCors.includes(origin)) {
@@ -38,19 +38,27 @@ app.use(function (req, res, next) {
   }
 
   next();
-});
+}); */
 
-/* app.use(
+app.use(
   cors({
     origin: [
       "http://localhost:3002",
       "https://krivolapov.nomoredomainsmonster.ru",
       "https://api.krivolapov.nomoredomainsmonster.ru",
+      "https://krivolapov.nomoredomainsmonster.ru",
+      "http://krivolapov.nomoredomainsmonster.ru",
+      "https://api.krivolapov.nomoredomainsmonster.ru",
+      "http://api.krivolapov.nomoredomainsmonster.ru",
+      "http://localhost:3002",
+      "https://localhost:3002",
+      "http://localhost:3000",
+      "https://localhost:3000",
     ],
-    credentials: true,
+    credentials: "include",
     maxAge: 30,
   })
-); */
+);
 //app.use(cors());
 
 app.use(bodyParser.json());
