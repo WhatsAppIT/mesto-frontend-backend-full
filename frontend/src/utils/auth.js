@@ -48,7 +48,7 @@ class Auth {
 const auth = new Auth({
     url: 'https://api.krivolapov.nomoredomainsmonster.ru',
     headers: {
-        Accept: 'application/json',
+        'Authorization': `Bearer ${token}`,
         'Content-type': 'application/json',
     },
 });
