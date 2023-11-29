@@ -18,8 +18,17 @@ const { PORT = 3002, MONGO_URL = "mongodb://127.0.0.1:27017/mestodb" } =
   process.env;
 
 const app = express();
-
-app.use(cors());
+app.use(
+  cors({
+    origin: [
+      "http://localhost:3000",
+      "https://krivolapov.nomoredomainsmonster.ru",
+    ],
+    credentials: true,
+    maxAge: 30,
+  })
+);
+//app.use(cors());
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
