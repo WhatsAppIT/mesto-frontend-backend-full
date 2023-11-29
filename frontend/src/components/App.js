@@ -99,7 +99,7 @@ function App() {
                 setCurrentUser(user);
                 setCards(card);
             })
-            .catch(console.error);
+            .catch((err) => console.log(err));
     }, []);
 
     function handleCardLike(card) {
