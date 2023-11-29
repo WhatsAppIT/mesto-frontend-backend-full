@@ -44,6 +44,7 @@ app.use(
   cors({
     origin: [
       "https://krivolapov.nomoredomainsmonster.ru",
+      "http://krivolapov.nomoredomainsmonster.ru",
       "http://localhost:3000",
     ],
     credentials: "include",
