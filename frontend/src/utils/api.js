@@ -108,6 +108,8 @@ const api = new Api({
         'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
         'Content-type': 'application/json',
     },
+        mode: 'cors',
+        credentials: 'include',
 });
 
 export { api };
