@@ -33,7 +33,15 @@ class Auth {
                 ...this._headers,
                 Authorization: `Bearer ${token}`,
             },
-        }).then(this._handleResponseAuth);
+        })
+            .then(this._handleResponseAuth)
+            .then((data) => {
+                if (data.token) {
+                    const { token } = data;
+                    localStorage.setItem('jwt', token);
+                    return token;
+                }
+            });
     }
 
     _handleResponseAuth(res) {
@@ -48,7 +56,7 @@ class Auth {
 const auth = new Auth({
     url: 'https://api.krivolapov.nomoredomainsmonster.ru',
     headers: {
-        Accept: 'application/json',
+        //Accept: 'application/json',
         'Content-type': 'application/json',
     },
 });
