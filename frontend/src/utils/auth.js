@@ -12,7 +12,15 @@ class Auth {
                 email: username,
                 password: password,
             }),
-        }).then(this._handleResponseAuth);
+        })
+            .then(this._handleResponseAuth)
+            .then((data) => {
+                if (data.token) {
+                    const { token } = data;
+                    localStorage.setItem('jwt', token);
+                    return token;
+                }
+            });
     }
 
     registration(email, password) {
@@ -33,15 +41,7 @@ class Auth {
                 ...this._headers,
                 Authorization: `Bearer ${token}`,
             },
-        })
-            .then(this._handleResponseAuth)
-            .then((data) => {
-                if (data.token) {
-                    const { token } = data;
-                    localStorage.setItem('jwt', token);
-                    return token;
-                }
-            });
+        }).then(this._handleResponseAuth);
     }
 
     _handleResponseAuth(res) {
