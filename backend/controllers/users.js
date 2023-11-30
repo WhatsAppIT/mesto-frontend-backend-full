@@ -172,7 +172,7 @@ const patchUsersMeAvatar = async (req, res, next) => {
     if (err.name === "ValidationError") {
       return next(
         new ValidationError(
-          "Переданыs некорректные данные при поиске пользователя."
+          "Переданы некорректные данные при поиске пользователя."
         )
       );
     }

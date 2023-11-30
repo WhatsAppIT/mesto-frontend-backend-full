@@ -10,7 +10,7 @@
 
 ## Ссылки на проект
 
-IP-адрес 84.201.130.202
+IP 84.201.130.202
 
 Frontend https://krivolapov.nomoredomainsmonster.ru
 
