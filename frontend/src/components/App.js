@@ -94,15 +94,13 @@ function App() {
     }
 
     React.useEffect(() => {
-        if (loggedIn) {
-            Promise.all([api.getUserInfo(), api.getInitialCards()])
-                .then(([user, card]) => {
-                    setCurrentUser(user);
-                    setCards(card);
-                })
-                .catch((err) => console.log(err));
-        }
-    }, [loggedIn]);
+        Promise.all([api.getUserInfo(), api.getInitialCards()])
+            .then(([user, card]) => {
+                setCurrentUser(user);
+                setCards(card);
+            })
+            .catch((err) => console.log(err));
+    }, []);
 
     function handleCardLike(card) {
         const isLiked = card.likes.some((i) => i._id === currentUser._id);
@@ -205,7 +203,7 @@ function App() {
                     <Route
                         path='/'
                         element={
-                            <Main
+                            <ProtectedRoute
                                 component={Main}
                                 loggedIn={loggedIn}
                                 cards={cards}
@@ -215,7 +213,7 @@ function App() {
                                 onEditProfile={handleEditProfileClick}
                                 onAddPlace={handleAddPlaceClick}
                                 onCardClick={handleCardClick}
-                            ></Main>
+                            ></ProtectedRoute>
                         }
                     />
                     <Route
