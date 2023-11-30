@@ -94,7 +94,7 @@ function App() {
     }
 
     React.useEffect(() => {
-        if (loggedIn) {
+        if (!loggedIn) {
             Promise.all([api.getUserInfo(), api.getInitialCards()])
                 .then(([user, card]) => {
                     setCurrentUser(user);
