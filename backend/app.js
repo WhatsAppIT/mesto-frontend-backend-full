@@ -59,11 +59,11 @@ app.use(cookieParser());
 
 app.use(reqLogger);
 
-app.get("/crash-test", () => {
+/* app.get("/crash-test", () => {
   setTimeout(() => {
     throw new Error("Сервер сейчас упадёт");
   }, 0);
-});
+}); */
 
 app.use(
   "/signin",
