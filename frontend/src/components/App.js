@@ -205,7 +205,7 @@ function App() {
                     <Route
                         path='/'
                         element={
-                            <ProtectedRoute
+                            <Main
                                 component={Main}
                                 loggedIn={loggedIn}
                                 cards={cards}
@@ -215,7 +215,7 @@ function App() {
                                 onEditProfile={handleEditProfileClick}
                                 onAddPlace={handleAddPlaceClick}
                                 onCardClick={handleCardClick}
-                            ></ProtectedRoute>
+                            ></Main>
                         }
                     />
                     <Route
