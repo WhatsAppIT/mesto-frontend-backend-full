@@ -94,13 +94,15 @@ function App() {
     }
 
     React.useEffect(() => {
-        Promise.all([api.getUserInfo(), api.getInitialCards()])
-            .then(([user, card]) => {
-                setCurrentUser(user);
-                setCards(card);
-            })
-            .catch((err) => console.log(err));
-    }, []);
+        if (loggedIn) {
+            Promise.all([api.getUserInfo(), api.getInitialCards()])
+                .then(([user, card]) => {
+                    setCurrentUser(user);
+                    setCards(card);
+                })
+                .catch((err) => console.log(err));
+        }
+    }, [loggedIn]);
 
     function handleCardLike(card) {
         const isLiked = card.likes.some((i) => i._id === currentUser._id);

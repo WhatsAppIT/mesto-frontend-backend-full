@@ -31,7 +31,7 @@ class Auth {
             metod: 'GET',
             headers: {
                 ...this._headers,
-                'Authorization': `Bearer ${token}`,
+                Authorization: `Bearer ${token}`,
             },
         }).then(this._handleResponseAuth);
     }
