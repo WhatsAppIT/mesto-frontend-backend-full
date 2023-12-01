@@ -90,7 +90,7 @@ app.use(
   }),
   postUser
 );
-app.use(auth);
+//app.use(auth);
 app.use("/users", routerUsers);
 
 app.use("/cards", routerCards);
