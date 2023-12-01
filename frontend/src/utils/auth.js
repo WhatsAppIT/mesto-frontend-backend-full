@@ -12,15 +12,14 @@ class Auth {
                 email: username,
                 password: password,
             }),
-        })
-            .then(this._handleResponseAuth)
-            .then((data) => {
+        }).then(this._handleResponseAuth);
+        /*             .then((data) => {
                 if (data.token) {
                     const { token } = data;
                     localStorage.setItem('jwt', token);
                     return token;
                 }
-            });
+            }); */
     }
 
     registration(email, password) {
