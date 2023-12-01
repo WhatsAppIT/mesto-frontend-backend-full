@@ -3,7 +3,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const cors = require("cors");
-//const cookieParser = require("cookie-parser");
+const cookieParser = require("cookie-parser");
 const { celebrate, Joi, errors } = require("celebrate");
 const { login, postUser } = require("./controllers/users");
 const { reqLogger, errorLogger } = require("./middlewares/logger");
@@ -33,7 +33,7 @@ app.use(
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-//app.use(cookieParser());
+app.use(cookieParser());
 
 app.use(reqLogger);
 
