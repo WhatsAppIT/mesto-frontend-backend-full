@@ -1,5 +1,5 @@
 {
-    "homepage": "http://mesto.krivolapov.nomoredomainsmonster.ru",
+    "homepage": "https://krivolapov.nomoredomainsmonster.ru",
     "name": "mesto-react",
     "version": "0.1.0",
     "private": true,
@@ -15,7 +15,7 @@
     },
     "scripts": {
         "predeploy": "npm run build",
-        "deploy": "gh-pages -d build",
+        "deploy": "npm run build && scp -r ./build/* danfromav@84.201.130.202:/home/danfromav/react-mesto-api-full-gha/frontend/build",
         "start": "react-scripts start",
         "build": "react-scripts build",
         "test": "react-scripts test",
