@@ -73,7 +73,6 @@ app.use(
 );
 app.use(auth);
 app.use("/users", routerUsers);
-
 app.use("/cards", routerCards);
 
 app.use("*", (req, res, next) =>
