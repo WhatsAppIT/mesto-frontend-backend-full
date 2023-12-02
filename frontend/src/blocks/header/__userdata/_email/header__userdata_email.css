@@ -1,0 +1,10 @@
+.header__userdata_email {
+  margin: 0;
+  margin-right: 24px;
+  cursor: default;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 22px;
+  color: #ffffff;
+}

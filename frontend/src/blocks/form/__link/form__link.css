@@ -1,0 +1,21 @@
+.form__link {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  text-decoration: none;
+  color: #ffffff;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+}
+
+.form__link:hover {
+  opacity: 0.6;
+}
+
+@media (min-width: 1024px) {
+  .form__link {
+    margin-top: 15px;
+  }
+}
