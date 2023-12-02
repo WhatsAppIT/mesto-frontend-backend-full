@@ -1,6 +1,6 @@
 {
     "homepage": "https://krivolapov.nomoredomainsmonster.ru",
-    "name": "mesto-react",
+    "name": "mesto-react-node",
     "version": "0.1.0",
     "private": true,
     "dependencies": {
