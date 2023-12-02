@@ -48,7 +48,6 @@ app.get("/crash-test", () => {
 
 app.use(
   "/signin",
-
   celebrate({
     body: Joi.object().keys({
       email: Joi.string().required().email(),
@@ -59,7 +58,6 @@ app.use(
 );
 app.use(
   "/signup",
-
   celebrate({
     body: Joi.object().keys({
       name: Joi.string().min(2).max(30),
