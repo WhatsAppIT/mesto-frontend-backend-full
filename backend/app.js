@@ -3,7 +3,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const cors = require("cors");
-//const cookieParser = require("cookie-parser");
+const cookieParser = require("cookie-parser");
 const { celebrate, Joi, errors } = require("celebrate");
 const { login, postUser } = require("./controllers/users");
 const { reqLogger, errorLogger } = require("./middlewares/logger");
@@ -17,28 +17,7 @@ const { linkRegex } = require("./utils/constants");
 const { PORT = 3000, MONGO_URL = "mongodb://127.0.0.1:27017/mestodb" } =
   process.env;
 
-/* const allowedCors = [
-  "https://krivolapov.nomoredomainsmonster.ru",
-  "http://krivolapov.nomoredomainsmonster.ru",
-  "https://api.krivolapov.nomoredomainsmonster.ru",
-  "http://api.krivolapov.nomoredomainsmonster.ru",
-  "http://localhost:3002",
-  "https://localhost:3002",
-  "http://localhost:3000",
-  "https://localhost:3000",
-]; */
-
 const app = express();
-
-/* app.use(function (req, res, next) {
-  const { origin } = req.headers;
-
-  if (allowedCors.includes(origin)) {
-    res.header("Access-Control-Allow-Origin", "*");
-  }
-
-  next();
-}); */
 
 app.use(
   cors({
@@ -51,11 +30,10 @@ app.use(
     maxAge: 30,
   })
 );
-//app.use(cors());
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-//app.use(cookieParser());
+app.use(cookieParser());
 
 app.use(reqLogger);
 
