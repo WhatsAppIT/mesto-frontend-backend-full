@@ -38,11 +38,16 @@ function App() {
     function handleLogin(username, password) {
         auth.authorization(username, password)
             .then((res) => {
-                setIsRegistrate(false);
-                setUserEmail(username);
-                localStorage.setItem('jwt', res.token);
-                setLoggedIn(true);
-                navigate('/', { replace: true });
+                if(res.token) {
+                    setIsRegistrate(false);
+                    setUserEmail(username);
+                    localStorage.setItem('jwt', res.token);
+                    setLoggedIn(true);
+                    navigate('/', { replace: true });
+                    return res;
+                } else {
+                    return;
+                  }
             })
             .catch((err) => {
                 console.log(err);
