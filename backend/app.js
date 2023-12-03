@@ -14,7 +14,7 @@ const routerCards = require("./routes/cards");
 const NotFoundError = require("./errors/NotFoundError");
 const { linkRegex } = require("./utils/constants");
 
-const { PORT = 3001, MONGO_URL = "mongodb://127.0.0.1:27017/mestodb" } =
+const { PORT = 3000, MONGO_URL = "mongodb://127.0.0.1:27017/mestodb" } =
   process.env;
 
 const app = express();
@@ -25,6 +25,9 @@ app.use(
       "https://krivolapov.nomoredomainsmonster.ru",
       "http://krivolapov.nomoredomainsmonster.ru",
       "http://localhost:3000",
+      "https://api.krivolapov.nomoredomainsmonster.ru",
+      "http://api.krivolapov.nomoredomainsmonster.ru",
+      "http://localhost:3001",
     ],
     credentials: "include",
     maxAge: 30,
@@ -45,7 +48,6 @@ app.get("/crash-test", () => {
 
 app.use(
   "/signin",
-
   celebrate({
     body: Joi.object().keys({
       email: Joi.string().required().email(),
@@ -56,7 +58,6 @@ app.use(
 );
 app.use(
   "/signup",
-
   celebrate({
     body: Joi.object().keys({
       name: Joi.string().min(2).max(30),
@@ -70,7 +71,6 @@ app.use(
 );
 app.use(auth);
 app.use("/users", routerUsers);
-
 app.use("/cards", routerCards);
 
 app.use("*", (req, res, next) =>
