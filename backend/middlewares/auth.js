@@ -1,7 +1,7 @@
 const jwt = require("jsonwebtoken");
 const SigninError = require("../errors/SigninError");
 
-const { JWT_SECRET } = process.env;
+const { JWT_SECRET, NODE_ENV } = process.env;
 
 const auth = (req, res, next) => {
   const { authorization } = req.headers;
@@ -14,7 +14,10 @@ const auth = (req, res, next) => {
   let payload;
 
   try {
-    payload = jwt.verify(token, JWT_SECRET);
+    payload = jwt.verify(
+      token,
+      NODE_ENV === "production" ? JWT_SECRET : "dev-secret"
+    );
   } catch (err) {
     return next(new SigninError("Необходима авторизация 888"));
   }
