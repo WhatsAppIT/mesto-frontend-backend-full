@@ -36,12 +36,11 @@ function App() {
     const navigate = useNavigate();
 
     function handleLogin(username, password) {
-        setIsLoading(true);
         auth.authorization(username, password)
             .then((res) => {
-                localStorage.setItem("jwt", res.token);
-                //setIsRegistrate(false);
+                setIsRegistrate(false);
                 setUserEmail(username);
+                localStorage.setItem("jwt", res.token);
                 setLoggedIn(true);
                 navigate("/", { replace: true });
             })
@@ -54,7 +53,6 @@ function App() {
     }
 
     function handleRegister(email, password) {
-        setIsLoading(true);
         auth.registration(email, password)
             .then(() => {
                 setIsRegistrate(true);
@@ -69,9 +67,9 @@ function App() {
     }
 
     function checkToken() {
-/*         if (localStorage.getItem("jwt")) {
-            const token = localStorage.getItem("jwt"); */
-            auth.getInformation()
+        if (localStorage.getItem("jwt")) {
+            const token = localStorage.getItem("jwt");
+            auth.getInformation(token)
                 .then((res) => {
                     if (res && res.data) {
                         setLoggedIn(true);
@@ -80,14 +78,14 @@ function App() {
                     }
                 })
                 .catch(console.error);
-/*         } else {
+        } else {
             setLoggedIn(false);
-        } */
+        }
     }
 
     React.useEffect(() => {
         checkToken();
-    }, [checkToken]);
+    }, []);
 
     function handleLogOut() {
         setLoggedIn(false);
@@ -96,15 +94,13 @@ function App() {
     }
 
     React.useEffect(() => {
-        if(loggedIn) {
-            Promise.all([api.getUserInfo(), api.getInitialCards()])
-                .then(([user, card]) => {
-                    setCurrentUser(user);
-                    setCards(card);
-                })
-                .catch(console.error);
-        } 
-    }, [loggedIn]);
+        Promise.all([api.getUserInfo(), api.getInitialCards()])
+            .then(([user, card]) => {
+                setCurrentUser(user);
+                setCards(card);
+            })
+            .catch(console.error);
+    }, []);
 
     function handleCardLike(card) {
         const isLiked = card.likes.some((i) => i._id === currentUser._id);

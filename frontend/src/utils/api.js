@@ -7,7 +7,6 @@ class Api {
   getUserInfo() {
     return fetch(`${this._url}/users/me`, {
       method: "GET",
-      credentials: 'include',
       headers: this._headers,
     }).then(this._handleResponse);
   }
@@ -15,7 +14,6 @@ class Api {
   getInitialCards() {
     return fetch(`${this._url}/cards`, {
       method: "GET",
-      credentials: 'include',
       headers: this._headers,
     }).then(this._handleResponse);
   }
@@ -23,7 +21,6 @@ class Api {
   editProfile(data) {
     return fetch(`${this._url}/users/me`, {
       method: "PATCH",
-      credentials: 'include',
       headers: this._headers,
       body: JSON.stringify({
         name: data.name,
@@ -35,7 +32,6 @@ class Api {
   changeAvatar(url) {
     return fetch(`${this._url}/users/me/avatar`, {
       method: "PATCH",
-      credentials: 'include',
       headers: this._headers,
       body: JSON.stringify({
         avatar: url,
@@ -50,7 +46,6 @@ class Api {
   editCard(data) {
     return fetch(`${this._url}/cards`, {
       method: "POST",
-      credentials: 'include',
       headers: this._headers,
       body: JSON.stringify({
         name: data.name,
@@ -62,7 +57,6 @@ class Api {
   deleteCard(cardId) {
     return fetch(`${this._url}/cards/${cardId}`, {
       method: "DELETE",
-      credentials: 'include',
       headers: this._headers,
     }).then(this._handleResponse);
   }
@@ -70,7 +64,6 @@ class Api {
   like(cardId) {
     return fetch(`${this._url}/cards/${cardId}/likes`, {
       method: "PUT",
-      credentials: 'include',
       headers: this._headers,
     }).then(this._handleResponse);
   }
@@ -78,7 +71,6 @@ class Api {
   removeLike(cardId) {
     return fetch(`${this._url}/cards/${cardId}/likes`, {
       method: "DELETE",
-      credentials: 'include',
       headers: this._headers,
     }).then(this._handleResponse);
   }
@@ -86,7 +78,6 @@ class Api {
   changeAvatar(url) {
     return fetch(`${this._url}/users/me/avatar`, {
       method: "PATCH",
-      credentials: 'include',
       headers: this._headers,
       body: JSON.stringify({
         avatar: url,
@@ -114,7 +105,7 @@ class Api {
 const api = new Api({
   url: "https://api.krivolapov.nomoredomainsmonster.ru",
   headers: {
-    //authorization: `Bearer ${localStorage.getItem('jwt')}`,
+    authorization: `Bearer ${localStorage.getItem('jwt')}`,
     "Content-type": "application/json",
   },
 });
