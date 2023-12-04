@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
-const SigninError = require('../errors/SigninError');
-const bcrypt = require('bcryptjs');
+
 const isEmail = require('validator/lib/isEmail');
 
 const userSchema = new mongoose.Schema(
@@ -41,25 +40,7 @@ const userSchema = new mongoose.Schema(
       select: false,
     },
   },
-  { versionKey: false,
-    statics: {
-    findUserByCredentials(email, password) {
-      return this.findOne({ email }).select('+password')
-        .then((user) => {
-          if (!user) {
-            throw new SigninError('Неправильные логин или пароль');
-          }
-          return bcrypt.compare(password, user.password)
-            .then((matched) => {
-              if (!matched) {
-                throw new SigninError('Неправильные логин или пароль');
-              }
-              return user;
-            });
-        });
-    },
-  },
-},
+  { versionKey: false, timestamps: true },
 );
 
 module.exports = mongoose.model('user', userSchema);
