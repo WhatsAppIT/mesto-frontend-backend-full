@@ -40,7 +40,7 @@ function App() {
         auth.authorization(username, password)
             .then((res) => {
                 localStorage.setItem("jwt", res.token);
-                setIsRegistrate(false);
+                //setIsRegistrate(false);
                 setUserEmail(username);
                 setLoggedIn(true);
                 navigate("/", { replace: true });
@@ -69,9 +69,9 @@ function App() {
     }
 
     function checkToken() {
-        if (localStorage.getItem("jwt")) {
-            const token = localStorage.getItem("jwt");
-            auth.getInformation(token)
+/*         if (localStorage.getItem("jwt")) {
+            const token = localStorage.getItem("jwt"); */
+            auth.getInformation()
                 .then((res) => {
                     if (res && res.data) {
                         setLoggedIn(true);
@@ -80,14 +80,14 @@ function App() {
                     }
                 })
                 .catch(console.error);
-        } else {
+/*         } else {
             setLoggedIn(false);
-        }
+        } */
     }
 
     React.useEffect(() => {
         checkToken();
-    }, []);
+    }, [checkToken]);
 
     function handleLogOut() {
         setLoggedIn(false);
