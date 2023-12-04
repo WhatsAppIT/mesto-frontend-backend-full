@@ -8,6 +8,7 @@ const { celebrate, Joi, errors } = require('celebrate');
 const { login, postUser } = require('./controllers/users');
 const { reqLogger, errorLogger } = require('./middlewares/logger');
 const auth = require('./middlewares/auth');
+const corsAllow = require('./middlewares/cors')
 const errorHandler = require('./middlewares/error-handler');
 const routerUsers = require('./routes/users');
 const routerCards = require('./routes/cards');
@@ -18,20 +19,7 @@ const { PORT = 3000, MONGO_URL = 'mongodb://127.0.0.1:27017/mestodb' } = process
 
 const app = express();
 
-app.use(
-  cors({
-    origin: [
-      'https://krivolapov.nomoredomainsmonster.ru',
-      'http://krivolapov.nomoredomainsmonster.ru',
-      'http://localhost:3000',
-      'https://api.krivolapov.nomoredomainsmonster.ru',
-      'http://api.krivolapov.nomoredomainsmonster.ru',
-      'http://localhost:3001',
-    ],
-    credentials: 'include',
-    maxAge: 30,
-  }),
-);
+app.use(corsAllow);
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
