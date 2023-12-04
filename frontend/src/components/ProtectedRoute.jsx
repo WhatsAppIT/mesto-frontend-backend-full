@@ -5,7 +5,7 @@ function ProtectedRoute({ component: Component, ...props }) {
   return props.loggedIn ? (
     <Component {...props} />
   ) : (
-    <Navigate to="/signin" replace />
+    <Navigate to="/sign-in" replace />
   );
 }
 
