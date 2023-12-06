@@ -127,7 +127,7 @@ function App() {
   }
 
   function handleUpdateUser(data) {
-    setIsLoading(true);
+    //setIsLoading(true);
     api
       .editProfile(data)
       .then((res) => {

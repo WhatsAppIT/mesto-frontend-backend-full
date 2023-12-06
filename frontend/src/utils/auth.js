@@ -1,5 +1,9 @@
 const url = "https://api.krivolapov.nomoredomainsmonster.ru";
 
+const getRes = (res) => {
+    return res.ok ? res.json() : Promise.reject(`Ошибка ${res.status}`)
+}
+
     export const authorization = (username, password) => {
         return fetch(`${url}/signin`, {
             method: "POST",
@@ -12,16 +16,7 @@ const url = "https://api.krivolapov.nomoredomainsmonster.ru";
                 password: password,
             }),
         })
-        .then((res) => res.json())
-        .then((res) => {
-          if (res) {
-            localStorage.setItem('jwt', res.token);
-            return res;
-          } else {
-            return;
-          }
-        })
-        .catch((err) => console.log(err));
+        .then(getRes)
     }
 
     export const registration = (email, password) => {
@@ -31,15 +26,9 @@ const url = "https://api.krivolapov.nomoredomainsmonster.ru";
                 Accept: "application/json",
                 "Content-type": "application/json",
             },
-            body: JSON.stringify({
-                email: email,
-                password: password,
-            }),
+            body: JSON.stringify({ email, password }),
         })
-        .then((res) => {
-            return res.json();
-          })
-        .catch((err) => console.log(err));
+        .then(getRes)
     }
 
     export const getInformation = (token) => {
@@ -51,9 +40,7 @@ const url = "https://api.krivolapov.nomoredomainsmonster.ru";
                 authorization: `Bearer ${token}`,
             },
         })
-        .then((res) => res.json())
-        .then((data) => data)
-        .catch((err) => console.log(err));
+        .then(getRes)
     }
 
 /*     _handleResponseAuth(res) {

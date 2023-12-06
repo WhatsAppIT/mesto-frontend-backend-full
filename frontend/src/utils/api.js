@@ -120,11 +120,13 @@ class Api {
   }
 
   changeLikeCardStatus(cardId, isLiked) {
-    if (isLiked) {
-      return this.like(cardId);
-    } else {
-      return this.removeLike(cardId);
-    }
+    return fetch(`${this._url}/cards/${cardId}/likes`, {
+      method: isLiked ? 'PUT' : 'DELETE',
+      headers: {
+        authorization: `Bearer ${localStorage.getItem('jwt')}`,
+        "Content-type": "application/json",
+      },
+    }).then(this._handleResponse);
   }
 }
 
