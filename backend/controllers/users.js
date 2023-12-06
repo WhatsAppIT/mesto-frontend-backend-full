@@ -76,17 +76,22 @@ const getProfile = (req, res, next) => {
 const login = (req, res, next) => {
   const { email, password } = req.body;
 
-  User.findUserByCredentials(email, password)
-    .then(({ _id: userId }) => {
-      if (!userId) {
+  User.findOne({ email })
+    .select('+password')
+    .then((user) => {
+      if (!user) {
+        throw new SigninError('Неправильные логин или пароль');
+      }
+
+      return bcrypt.compare(password, user.password).then((matched) => {
+        if (!matched) {
+          throw new SigninError('Неправильные логин или пароль');
+        }
         const token = jwt.sign({ _id: user._id }, NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret', {
           expiresIn: '7d',
         });
-
-        return res.send({ token })
-      }
-
-      throw new SigninError('Неправильные логин или пароль');
+        res.send({ token });
+      });
     })
 
     .catch((err) => {
