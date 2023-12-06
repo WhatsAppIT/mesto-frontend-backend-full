@@ -60,7 +60,6 @@ function Main(props) {
           />
         ))}
       </section>
-      <Footer />
     </main>
   );
 }

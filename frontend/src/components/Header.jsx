@@ -11,10 +11,10 @@ function Header(props) {
             <div className="header__authorization">
                 <Routes>
                     <Route
-                        path="/sign-in"
+                        path="/signin"
                         element={
                             <Link
-                                to="/sign-up"
+                                to="/signup"
                                 className="header__authorization header__authorization_type_signin"
                             >
                                 Регистрация
@@ -22,10 +22,10 @@ function Header(props) {
                         }
                     />
                     <Route
-                        path="/sign-up"
+                        path="/signup"
                         element={
                             <Link
-                                to="/sign-in"
+                                to="/signin"
                                 className="header__authorization header__authorization_type_signup"
                             >
                                 Войти
@@ -40,7 +40,7 @@ function Header(props) {
                                     {email}
                                 </p>
                                 <Link
-                                    to="/sign-in"
+                                    to="/signin"
                                     className="header__authorization header__authorization_type_main"
                                     onClick={handleLogOut}
                                 >
