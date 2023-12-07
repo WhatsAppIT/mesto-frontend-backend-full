@@ -39,16 +39,21 @@ function App() {
 
   React.useEffect(() => {
      if(loggedIn) {
-      setIsLoading(true)
-        Promise.all([api.getUserInfo(), api.getInitialCards()])
-          .then(([user, card]) => {
+        api.getUserInfo()
+          .then((user) => {
             setCurrentUser(user);
-            setCards(card);
           }) 
           .catch(console.error)
-          .finally(() => {
-            setIsLoading(false);
-          })
+
+          setIsLoading(true)
+        api.getInitialCards()
+            .then((card) => {
+              setCards(card);
+            }) 
+            .catch(console.error)
+            .finally(() => {
+              setIsLoading(false);
+            })
     } 
   }, [loggedIn]);
 
@@ -112,7 +117,7 @@ function App() {
     const isLiked = card.likes.some((i) => i._id === currentUser._id);
 
     api.changeLikeCardStatus(card._id, !isLiked).then((newCard) => {
-      setCards((state) => state.map((c) => (c._id === card._id ? newCard : c)));
+      setCards((state) => state.map((c) => (c._id === card._id ? newCard : c)))
     });
   }
 
@@ -127,7 +132,7 @@ function App() {
   }
 
   function handleUpdateUser(data) {
-    //setIsLoading(true);
+    setIsLoading(true);
     api
       .editProfile(data)
       .then((res) => {
@@ -155,7 +160,7 @@ function App() {
     api
       .editCard(data)
       .then((newCard) => {
-        setCards([newCard, ...cards]);
+        setCards((state) => [newCard, ...state]);
         closeAllPopups();
       })
       .finally(() => {

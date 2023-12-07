@@ -29,11 +29,11 @@ const postUser = (req, res, next) => {
     })
       .then((user) => {
         res.status(201).send({
-          _id: user._id,
-          name: user.name,
-          about: user.about,
-          avatar: user.avatar,
-          email: user.email,
+          //_id: user._id,
+          name,
+          about,
+          avatar,
+          email,
         });
       })
       .catch((err) => {
