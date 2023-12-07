@@ -27,15 +27,13 @@ const postUser = (req, res, next) => {
       email,
       password: hash,
     })
-      .then(() => {
+      .then((user) => {
         res.status(201).send({
-          //_id: user._id,
-          data: {
-            name,
-            about,
-            avatar,
-            email,
-          }
+          _id: user._id,
+          name: user.name,
+          about: user.about,
+          avatar: user.avatar,
+          email: user.email,
         });
       })
       .catch((err) => {
@@ -78,28 +76,18 @@ const getProfile = (req, res, next) => {
 const login = (req, res, next) => {
   const { email, password } = req.body;
 
-  User.findOne({ email })
-    .select('+password')
+  return User.findUserByCredentials(email, password)
     .then((user) => {
-      if (!user) {
-        throw new SigninError('Неправильные логин или пароль');
-      }
-
-      return bcrypt.compare(password, user.password).then((matched) => {
-        if (!matched) {
-          throw new SigninError('Неправильные логин или пароль');
-        }
         const token = jwt.sign({ _id: user._id }, NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret', {
           expiresIn: '7d',
         });
         res.send({ token });
+      })
+      .catch((err) => {
+        next(err);
       });
-    })
+ }
 
-    .catch((err) => {
-      next(err);
-    });
-};
 
 const getUsers = async (req, res, next) => {
   try {
