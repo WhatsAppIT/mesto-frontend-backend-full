@@ -30,10 +30,12 @@ const postUser = (req, res, next) => {
       .then(() => {
         res.status(201).send({
           //_id: user._id,
-          name,
-          about,
-          avatar,
-          email,
+          data: {
+            name,
+            about,
+            avatar,
+            email,
+          }
         });
       })
       .catch((err) => {
