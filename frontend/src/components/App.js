@@ -42,6 +42,7 @@ function App() {
         api.getUserInfo()
           .then((user) => {
             setCurrentUser(user);
+            console.log(user)
           }) 
           .catch(console.error)
 
@@ -49,6 +50,7 @@ function App() {
         api.getInitialCards()
             .then((card) => {
               setCards(card);
+              console.log(card)
             }) 
             .catch(console.error)
             .finally(() => {
