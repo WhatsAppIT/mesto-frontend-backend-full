@@ -82,12 +82,12 @@ const login = (req, res, next) => {
           expiresIn: '7d',
         });
         res
-        .cookie('jwt', token, {
+/*         .cookie('jwt', token, {
           maxAge: 3600000 * 24 * 7,
           httpOnly: true,
           sameSite: true,
-        });
-        res.send({ message: 'Вы успешно авторизованы' });
+        }); */
+        res.send({ token });
       })
       .catch((err) => {
         next(err);

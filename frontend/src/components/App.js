@@ -40,9 +40,9 @@ function App() {
   React.useEffect(() => {
      if(loggedIn) {
         api.getUserInfo()
-          .then((user) => {
-            setCurrentUser(user);
-            console.log(user)
+          .then((data) => {
+            setCurrentUser(data);
+            console.log(data)
           }) 
           .catch(console.error)
 
