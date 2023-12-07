@@ -1,29 +1,17 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function Register(props) {
     const { onRegister } = props;
-  
-    const [formRegisterValue, setFormRegisterValue] = React.useState({
-      email: "",
-      password: "",
-    });
-  
-    function handleChangeRegister(e) {
-      const { name, value } = e.target;
-  
-      setFormRegisterValue({
-        ...formRegisterValue,
-        [name]: value,
-      });
-    }
-  
+
+    const navigate = useNavigate();
+    const [email, setEmail] = React.useState("");
+    const [password, setPassword] = React.useState("");
+
     function handleSubmitRegister(e) {
-      e.preventDefault();
-  
-      const { email, password } = formRegisterValue;
-  
-      onRegister(email, password);
+        e.preventDefault();
+        onRegister(email, password);
     }
 
     return (
@@ -37,24 +25,22 @@ function Register(props) {
                     type="email"
                     className="form__input form__input_type_username"
                     placeholder="Email"
-                    name="email" 
                     id="LoginEmail"
                     minLength="2"
                     required
-                    onChange={handleChangeRegister}
-                    value={formRegisterValue.email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    value={email}
                     autoComplete="new-password"
                 />
                 <input
                     type="password"
                     className="form__input form__input_type_password"
                     placeholder="Пароль"
-                    name="password"
                     id="LoginPassword"
                     minLength="2"
                     required
-                    onChange={handleChangeRegister}
-                    value={formRegisterValue.password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    value={password}
                     autoComplete="new-password"
                 />
                 <button
