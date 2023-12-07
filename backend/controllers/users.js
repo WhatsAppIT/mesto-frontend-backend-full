@@ -1,4 +1,4 @@
-//const bcrypt = require('bcryptjs');
+const bcrypt = require('bcryptjs');
 require('dotenv').config();
 const jwt = require('jsonwebtoken');
 const User = require('../models/user');
@@ -76,24 +76,28 @@ const getProfile = (req, res, next) => {
 const login = (req, res, next) => {
   const { email, password } = req.body;
 
-  return User.findUserByCredentials(email, password)
+  User.findOne({ email })
+    .select('+password')
     .then((user) => {
+      if (!user) {
+        throw new SigninError('Неправильные логин или пароль');
+      }
+
+      return bcrypt.compare(password, user.password).then((matched) => {
+        if (!matched) {
+          throw new SigninError('Неправильные логин или пароль');
+        }
         const token = jwt.sign({ _id: user._id }, NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret', {
           expiresIn: '7d',
         });
-        res
-/*         .cookie('jwt', token, {
-          maxAge: 3600000 * 24 * 7,
-          httpOnly: true,
-          sameSite: true,
-        }); */
         res.send({ token });
-      })
-      .catch((err) => {
-        next(err);
       });
- }
+    })
 
+    .catch((err) => {
+      next(err);
+    });
+};
 
 const getUsers = async (req, res, next) => {
   try {
