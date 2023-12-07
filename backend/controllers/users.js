@@ -81,7 +81,13 @@ const login = (req, res, next) => {
         const token = jwt.sign({ _id: user._id }, NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret', {
           expiresIn: '7d',
         });
-        res.send({ token });
+        res
+        .cookie('jwt', token, {
+          maxAge: 3600000 * 24 * 7,
+          httpOnly: true,
+          sameSite: true,
+        });
+        res.send({ message: 'Вы успешно авторизованы' });
       })
       .catch((err) => {
         next(err);
