@@ -27,8 +27,14 @@ const postUser = (req, res, next) => {
       email,
       password: hash,
     })
-      .then(() => {
-        res.status(201).send(_id, name, about, avatar, email);
+      .then((user) => {
+        res.status(201).send({
+          _id: user._id,
+          name: user.name,
+          about: user.about,
+          avatar: user.avatar,
+          email: user.email,
+        });
       })
       .catch((err) => {
         if (err.name === 'ValidationError') {
