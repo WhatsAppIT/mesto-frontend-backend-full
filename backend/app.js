@@ -28,7 +28,7 @@ app.use(
       'http://api.krivolapov.nomoredomainsmonster.ru',
       'http://localhost:3001',
     ],
-    credentials: 'include',
+    credentials: true,
     maxAge: 30,
   }),
 );

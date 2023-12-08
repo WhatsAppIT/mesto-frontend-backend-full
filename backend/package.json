@@ -1,6 +1,5 @@
 {
   "name": "express-mesto-gha",
-  "homepage": ".",
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
