@@ -13,6 +13,16 @@ class Api {
     }).then(this._handleResponse);
   }
 
+  updatetoken(token) {
+    return fetch(`${this._url}/users/me`, {
+      method: "GET",
+      headers: {
+        authorization: `Bearer ${token}`,
+        "Content-type": "application/json",
+      },
+    }).then(this._handleResponse);
+  }
+
   getInitialCards() {
     return fetch(`${this._url}/cards`, {
       method: "GET",
