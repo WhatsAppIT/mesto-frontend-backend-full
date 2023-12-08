@@ -28,13 +28,7 @@ const postUser = (req, res, next) => {
       password: hash,
     })
       .then((user) => {
-        res.status(201).send({
-          _id: user._id,
-          name: user.name,
-          about: user.about,
-          avatar: user.avatar,
-          email: user.email,
-        });
+        res.status(201).send(_id, name, about, avatar, email);
       })
       .catch((err) => {
         if (err.name === 'ValidationError') {
@@ -91,7 +85,6 @@ const login = (req, res, next) => {
           expiresIn: '7d',
         });
         res.send({ token });
-        console.log(token)
       });
     })
 

@@ -67,6 +67,7 @@ function App() {
     }
 
     function checkToken() {
+        setIsLoading(true)
         if (localStorage.getItem("jwt")) {
             const token = localStorage.getItem("jwt");
             auth.getInformation(token)
