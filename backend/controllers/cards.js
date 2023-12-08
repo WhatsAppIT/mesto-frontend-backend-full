@@ -62,7 +62,7 @@ const deleteCardsIdLikes = async (req, res, next) => {
   try {
     const deleteLike = await Card.findByIdAndUpdate(
       req.params.cardId,
-      { $pull: { likes: user } },
+      { $pull: { likes: req.user._id } },
       { new: true },
     );
 
