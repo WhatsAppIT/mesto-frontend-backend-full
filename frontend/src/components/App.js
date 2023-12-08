@@ -94,17 +94,14 @@ function App() {
     }
 
     React.useEffect(() => {
-        const token = localStorage.getItem("jwt");
-        if(token) {
-            Promise.all([api.getUserInfo(), api.getInitialCards()])
-                .then(([user, card]) => {
-                    setCurrentUser(user);
-                    setCards(card);
-                    console.log(user);
-                    console.log(card);
-                })
-                .catch(console.error);
-        }
+        Promise.all([api.getUserInfo(), api.getInitialCards()])
+            .then(([user, card]) => {
+                setCurrentUser(user);
+                setCards(card);
+                console.log(user);
+                console.log(card);
+            })
+            .catch(console.error);
     }, []);
 
     function handleCardLike(card) {
