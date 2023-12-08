@@ -80,17 +80,18 @@ const login = (req, res, next) => {
     .select('+password')
     .then((user) => {
       if (!user) {
-        throw new SigninError('Неправильные логин или пароль');
+        throw new SigninError('Неправильные логин или пароль c u login');
       }
 
       return bcrypt.compare(password, user.password).then((matched) => {
         if (!matched) {
-          throw new SigninError('Неправильные логин или пароль');
+          throw new SigninError('Неправильные логин или пароль c u login');
         }
         const token = jwt.sign({ _id: user._id }, JWT_SECRET, {
           expiresIn: '7d',
         });
         res.send({ token });
+        console.log(token)
       });
     })
 
