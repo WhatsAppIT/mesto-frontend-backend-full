@@ -3,7 +3,7 @@ require('dotenv').config();
 const jwt = require('jsonwebtoken');
 const User = require('../models/user');
 
-const { JWT_SECRET } = process.env;
+const { JWT_SECRET, NODE_ENV } = process.env;
 
 const ValidationError = require('../errors/ValidationError');
 const NotFoundError = require('../errors/NotFoundError');
@@ -87,7 +87,7 @@ const login = (req, res, next) => {
         if (!matched) {
           throw new SigninError('Неправильные логин или пароль c u login');
         }
-        const token = jwt.sign({ _id: user._id }, JWT_SECRET, {
+        const token = jwt.sign({ _id: user._id }, NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret', {
           expiresIn: '7d',
         });
         res.send({ token });

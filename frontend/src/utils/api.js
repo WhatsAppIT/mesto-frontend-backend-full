@@ -126,6 +126,7 @@ class Api {
       return this.removeLike(cardId);
     }
   }
+  
 }
 
 const api = new Api({
