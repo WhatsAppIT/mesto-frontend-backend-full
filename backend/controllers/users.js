@@ -45,7 +45,7 @@ const postUser = (req, res, next) => {
           );
         }
         if (err.code === 11000) {
-          return next(new RepetError('Такаой email уже зарегистрирован.'));
+          return next(new RepetError('Такаой email уже зарегистрирован c u.'));
         }
         return next(err);
       });

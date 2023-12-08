@@ -67,17 +67,18 @@ function App() {
     }
 
     function checkToken() {
-        setIsLoading(true)
         if (localStorage.getItem("jwt")) {
             const token = localStorage.getItem("jwt");
             auth.getInformation(token)
                 .then((res) => {
-                    if (res && res.data) {
+                    if (res) {
                         setLoggedIn(true);
-                        setUserEmail(res.data.email);
+                        setUserEmail(res.email);
                         navigate("/", { replace: true });
                     }
+                    console.log(res)
                 })
+
                 .catch(console.error);
         } else {
             setLoggedIn(false);
@@ -86,7 +87,7 @@ function App() {
 
     React.useEffect(() => {
         checkToken();
-    }, [checkToken]);
+    }, []);
 
     function handleLogOut() {
         setLoggedIn(false);
