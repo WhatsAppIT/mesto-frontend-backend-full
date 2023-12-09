@@ -88,32 +88,14 @@ class Api {
     }).then(this._handleResponse);
   }
 
-  like(cardId) {
+  changeLikeCardStatus(cardId, like) {
     return fetch(`${this._url}/cards/${cardId}/likes`, {
-      method: "PUT",
+      method: like ? "PUT" : "DELETE",
       headers: {
         authorization: `Bearer ${localStorage.getItem('jwt')}`,
         "Content-type": "application/json",
       },
     }).then(this._handleResponse);
-  }
-
-  removeLike(cardId) {
-    return fetch(`${this._url}/cards/${cardId}/likes`, {
-      method: "DELETE",
-      headers: {
-        authorization: `Bearer ${localStorage.getItem('jwt')}`,
-        "Content-type": "application/json",
-      },
-    }).then(this._handleResponse);
-  }
-
-    changeLikeCardStatus(cardId, isLiked) {
-    if (isLiked) {
-      return this.like(cardId);
-    } else {
-      return this.removeLike(cardId);
-    }
   }
 
   changeAvatar(url) {
