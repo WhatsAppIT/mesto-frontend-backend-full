@@ -76,9 +76,7 @@ function App() {
                         setUserEmail(res.email);
                         navigate("/", { replace: true });
                     }
-                    console.log(res)
                 })
-
                 .catch(console.error);
         } else {
             setLoggedIn(false);
@@ -108,8 +106,11 @@ function App() {
 
     function handleCardLike(card) {
         const isLiked = card.likes.some((i) => i._id === currentUser._id);
+console.log(isLiked);
 
-        api.changeLikeCardStatus(card._id, !isLiked)
+        api.changeLikeCardStatus(card._id, isLiked)
+console.log(card._id, isLiked)
+
             .then((newCard) => {
                 setCards((state) =>
                     state.map((c) => (c._id === card._id ? newCard : c))
@@ -123,8 +124,12 @@ function App() {
             .then(() => {
                 const updatedCards = cards.slice().filter((c) => c !== card);
                 setCards(updatedCards);
+                console.log(updatedCards);
+
             })
             .catch(console.error);
+            console.log(card._id);
+
     }
 
     function handleUpdateUser(data) {

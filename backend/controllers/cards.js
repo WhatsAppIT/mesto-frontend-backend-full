@@ -32,7 +32,7 @@ const postCard = (req, res, next) => {
 
 const deleteCardId = (req, res, next) => {
   const owner = req.user._id;
-  console.log(owner);
+
   Card.findById(req.params.cardId)
     .then((card) => {
       if (!card) {
@@ -62,7 +62,7 @@ const deleteCardsIdLikes = async (req, res, next) => {
   const owner = req.user._id;
   try {
     const deleteLike = await Card.findByIdAndUpdate(
-      req.params.cardId,
+      req.params.card._id,
       { $pull: { likes: owner } },
       { new: true },
     );
@@ -86,7 +86,7 @@ const deleteCardsIdLikes = async (req, res, next) => {
 const putCardsIdLikes = async (req, res, next) => {
   try {
     const putLike = await Card.findByIdAndUpdate(
-      req.params.cardId,
+      req.params.card._id,
       { $addToSet: { likes: req.user._id } },
       { new: true },
     );
