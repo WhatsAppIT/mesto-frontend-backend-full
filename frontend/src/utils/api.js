@@ -108,7 +108,7 @@ class Api {
     }).then(this._handleResponse);
   }
 
-  changeLikeCardStatus(cardId, isLiked) {
+    changeLikeCardStatus(cardId, isLiked) {
     if (isLiked) {
       return this.like(cardId);
     } else {
