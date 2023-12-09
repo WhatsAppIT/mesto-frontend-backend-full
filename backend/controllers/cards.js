@@ -32,7 +32,7 @@ const postCard = (req, res, next) => {
 
 const deleteCardId = (req, res, next) => {
   const owner = req.user._id;
-
+  console.log(owner);
   Card.findById(req.params.cardId)
     .then((card) => {
       if (!card) {
