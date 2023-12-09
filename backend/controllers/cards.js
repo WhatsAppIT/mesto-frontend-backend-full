@@ -59,13 +59,13 @@ const deleteCardId = (req, res, next) => {
 };
 
 const deleteCardsIdLikes = async (req, res, next) => {
-  const owner = req.user._id;
+  //const owner = req.user._id;
   try {
     const deleteLike = await Card.findByIdAndUpdate(
-      req.params._id,
+      req.params.cardId,
       { $pull: { likes: req.user._id } },
       { new: true },
-    ).populate('likes')
+    );
 
     if (!deleteLike) {
       throw new NotFoundError('Карточка с указанным _id не найдена.');
@@ -86,7 +86,7 @@ const deleteCardsIdLikes = async (req, res, next) => {
 const putCardsIdLikes = async (req, res, next) => {
   try {
     const putLike = await Card.findByIdAndUpdate(
-      req.params._id,
+      req.params.cardId,
       { $addToSet: { likes: req.user._id } },
       { new: true },
     ).populate('likes')
