@@ -108,6 +108,14 @@ class Api {
     }).then(this._handleResponse);
   }
 
+  changeLikeCardStatus(cardId, isLiked) {
+    if (isLiked) {
+      return this.like(cardId);
+    } else {
+      return this.removeLike(cardId);
+    }
+  }
+
   changeAvatar(url) {
     return fetch(`${this._url}/users/me/avatar`, {
       method: "PATCH",
@@ -128,15 +136,6 @@ class Api {
       return Promise.reject(`Ошибка: ${res.status}`);
     }
   }
-
-  changeLikeCardStatus(cardId, isLiked) {
-    if (isLiked) {
-      return this.like(cardId);
-    } else {
-      return this.removeLike(cardId);
-    }
-  }
-  
 }
 
 const api = new Api({
