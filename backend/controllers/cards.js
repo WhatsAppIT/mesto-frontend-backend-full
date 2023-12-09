@@ -59,10 +59,10 @@ const deleteCardId = (req, res, next) => {
 };
 
 const deleteCardsIdLikes = async (req, res, next) => {
-  const owner = req.user._id;
+  //const owner = req.user._id;
   try {
     const deleteLike = await Card.findByIdAndUpdate(
-      id,
+      _id,
       { $pull: { likes: req.user._id } },
       { new: true },
     ).populate('likes')
@@ -86,7 +86,7 @@ const deleteCardsIdLikes = async (req, res, next) => {
 const putCardsIdLikes = async (req, res, next) => {
   try {
     const putLike = await Card.findByIdAndUpdate(
-      id,
+      _id,
       { $addToSet: { likes: req.user._id } },
       { new: true },
     ).populate('likes')
