@@ -62,7 +62,7 @@ const deleteCardsIdLikes = async (req, res, next) => {
   const owner = req.user._id;
   try {
     const deleteLike = await Card.findByIdAndUpdate(
-      req.params.card._id,
+      req.params.cardId,
       { $pull: { likes: owner } },
       { new: true },
     );
@@ -86,7 +86,7 @@ const deleteCardsIdLikes = async (req, res, next) => {
 const putCardsIdLikes = async (req, res, next) => {
   try {
     const putLike = await Card.findByIdAndUpdate(
-      req.params.card._id,
+      req.params.cardId,
       { $addToSet: { likes: req.user._id } },
       { new: true },
     );

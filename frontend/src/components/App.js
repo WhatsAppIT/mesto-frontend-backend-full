@@ -108,8 +108,8 @@ function App() {
         const isLiked = card.likes.some((i) => i._id === currentUser._id);
 console.log(isLiked);
 
-        api.changeLikeCardStatus(card._id, isLiked)
-console.log(card._id, isLiked)
+        api.changeLikeCardStatus(card._id, !isLiked)
+console.log(card._id, !isLiked)
 
             .then((newCard) => {
                 setCards((state) =>
